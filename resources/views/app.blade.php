@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bekijk hier hoeveel CMGT Coins jij hebt! Heb jij de meeste?">
 
     <title>CMGT Coin Wallet</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
