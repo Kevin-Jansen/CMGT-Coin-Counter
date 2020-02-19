@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center text-white">
+    <div class="text-center text-white px-8">
         <h1 class="text-5xl">CMGT Coins</h1>
         <p class="text-2xl">Hoeveel heb jij er?</p>
         <form @submit.prevent="submitForm" class="relative text-gray-600 mt-4">

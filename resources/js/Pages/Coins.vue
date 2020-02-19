@@ -1,6 +1,6 @@
 <template>
-    <div class="text-white text-center">
-        <div class="z-20">
+    <div class="text-white text-center ">
+        <div class="z-20 px-8">
             <h2 class="text-5xl">Jij hebt
                 <count-to :startVal="0" :endVal="coinCount" :duration="3000"></count-to>
                 CMGT Coins
@@ -9,7 +9,7 @@
         </div>
         <transition name="fade">
             <vue-particles color="#dedede" class="h-screen w-screen absolute top-0 left-0 right-0 bottom-0 z-10"
-                           :particlesNumber="coinCount"
+                           :particlesNumber="coinCount" :clickEffect="false"
                            :particleOpacity="1" v-if="isLoaded"></vue-particles>
         </transition>
     </div>
