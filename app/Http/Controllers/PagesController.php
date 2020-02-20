@@ -12,6 +12,10 @@ class PagesController extends Controller
 {
     public function index()
     {
+        if (isset($_GET['name'])) {
+            return Redirect::to('fetch?name='.$_GET['name']);
+        }
+
         return Inertia::render('Index', [
             'prevNames' => Session::get('prevNames') ? Session::get('prevNames') : null,
             'error' => Session::get('error') ? Session::get('error') : null,
@@ -20,8 +24,18 @@ class PagesController extends Controller
 
     public function fetch(Request $request)
     {
-        if (empty($request->input('name'))) {
+        if (empty($request->input('name')) && !isset($_GET['name'])) {
             return Redirect::to('/');
+        }
+
+        $prevNames = null;
+        if (!empty($request->input('name'))) {
+            $prevNames = $request->input('name');
+        } elseif (isset($_GET['name'])) {
+            $prevNames = $_GET['name'];
+        } else {
+            return Redirect::to('/');
+
         }
 
         Session::put('prevNames', $request->input('name'));
@@ -55,5 +69,26 @@ class PagesController extends Controller
         return Inertia::render('Coins', [
             'coinCount' => Session::get('coinCount')
         ]);
+    }
+
+    public function leaderboard() {
+            $client = new Client();
+            $res = $client->request('GET', 'https://programmeren9.cmgt.hr.nl:8000/api/users');
+
+            $data = json_decode($res->getBody()->getContents(), true);
+
+            unset($data['marleenikhounogsteedsvanje']);
+
+            $leaderboard = [];
+
+//            dd(array_keys($data));
+
+            foreach (array_keys($data) as $key) {
+                $leaderboard[] = ['name' => $key, 'value' => $data[$key]];
+            }
+
+            return Inertia::render('Leaderboard', [
+               'leaderboard' => $leaderboard,
+            ]);
     }
 }

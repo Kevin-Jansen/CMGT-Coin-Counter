@@ -28,7 +28,7 @@
     <link href="{{mix('css/app.css')}}" rel="stylesheet"></link>
     <script src="{{mix('js/app.js')}}" type="application/javascript" defer></script>
 </head>
-<body class="flex justify-center items-center h-screen">
+<body class="flex justify-center items-center" style="min-height: 100vh;">
 @inertia
 </body>
 </html>

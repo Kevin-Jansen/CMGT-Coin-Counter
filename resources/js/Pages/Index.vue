@@ -64,7 +64,7 @@
                 let data = new FormData();
                 data.append('name', this.name)
 
-                this.$inertia.post('/fetch', data);
+                this.$inertia.post('fetch', data);
             }
         },
         updated() {
