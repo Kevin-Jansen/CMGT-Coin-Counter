@@ -38,7 +38,7 @@ class PagesController extends Controller
 
         }
 
-        Session::put('prevNames', $request->input('name'));
+        $request->input('name') ? Session::put('prevNames', $request->input('name')) : Session::put('prevNames', $_GET['name']);
 
         $count = 0;
         $names = explode('||', $request->input('name'));
@@ -67,7 +67,8 @@ class PagesController extends Controller
     public function coins()
     {
         return Inertia::render('Coins', [
-            'coinCount' => Session::get('coinCount')
+            'coinCount' => Session::get('coinCount'),
+            'names' => Session::get('prevNames')
         ]);
     }
 

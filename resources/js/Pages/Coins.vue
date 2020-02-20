@@ -2,7 +2,7 @@
     <div class="text-white text-center ">
         <inertia-link :href="'/leaderboard'" class="absolute top-0 right-0 p-8 z-50">Leaderboard</inertia-link>
         <div class="z-20 px-8">
-            <h2 class="text-5xl">Jij hebt
+            <h2 class="text-5xl">{{names.replace('||', ' & ')}}, jij hebt
                 <count-to :startVal="0" :endVal="coinCount" :duration="3000"></count-to>
                 CMGT Coins
             </h2>
@@ -23,7 +23,7 @@
         name: "Coins",
         props: {
             coinCount: Number,
-            names: Array,
+            names: String,
         },
         data() {
             return {
