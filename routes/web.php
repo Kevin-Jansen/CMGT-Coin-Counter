@@ -15,3 +15,5 @@ Route::get('/')->uses('PagesController@index')->name('homepage');
 
 Route::post('fetch')->uses('PagesController@fetch')->name('data.fetch');
 Route::get('wallet')->uses('PagesController@coins')->name('coins');
+
+Route::get('{any}')->uses('PagesController@index');
