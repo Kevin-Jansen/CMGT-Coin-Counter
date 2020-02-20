@@ -79,9 +79,9 @@ class PagesController extends Controller
 
             unset($data['marleenikhounogsteedsvanje']);
 
-            $leaderboard = [];
+            arsort($data);
 
-//            dd(array_keys($data));
+            $leaderboard = [];
 
             foreach (array_keys($data) as $key) {
                 $leaderboard[] = ['name' => $key, 'value' => $data[$key]];
