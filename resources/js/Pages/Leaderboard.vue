@@ -3,7 +3,7 @@
 		<inertia-link :href="'/'" class="absolute top-0 right-0 p-8 z-50">Home</inertia-link>
         <div class="flex justify-center" style="flex-direction: column;">
             <h1 class="text-5xl">CMGT Coin Leaderboard</h1>
-			<p class="text-sm mt-4">Deze pagina ververst elke 60 seconden.</p>
+			<p class="text-sm mt-4 text-center text-white px-8">Deze pagina ververst elke 60 seconden.</p>
             <table class="mx-auto">
                 <tr v-for="user in leaderboard">
                     <td><a :href="'https://coins.cmgt.dev/?name='+ user.name">{{ user.name }}</a></td>
@@ -20,7 +20,7 @@
         props: {
             leaderboard: Array | Object,
 		},
-		methods() {
+		created() {
 			setTimeout(function(){
 				window.location.reload(1);
 			}, 60000);
