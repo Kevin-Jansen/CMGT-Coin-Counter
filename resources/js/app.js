@@ -1,24 +1,15 @@
-require('./bootstrap');
-
+import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
-import { InertiaApp } from '@inertiajs/inertia-vue'
 
-import VueParticles from 'vue-particles'
-Vue.use(VueParticles)
+Vue.use(plugin)
 
-import './loader.scss'
-
-Vue.config.productionTip = false
-// Vue.mixin({ methods: { route: window.route } })
-Vue.use(InertiaApp);
-
-let app = document.getElementById('app')
+const el = document.getElementById('app')
 
 new Vue({
-    render: h => h(InertiaApp, {
+    render: h => h(App, {
         props: {
-            initialPage: JSON.parse(app.dataset.page),
-            resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
+            initialPage: JSON.parse(el.dataset.page),
+            resolveComponent: name => require(`./Pages/${name}`).default,
         },
     }),
-}).$mount(app)
+}).$mount(el)

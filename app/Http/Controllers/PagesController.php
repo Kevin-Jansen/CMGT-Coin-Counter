@@ -64,7 +64,7 @@ class PagesController extends Controller
         return Redirect::route('coins');
     }
 
-    public function coins()
+    public function wallet()
     {
         return Inertia::render('Coins', [
             'coinCount' => Session::get('coinCount'),

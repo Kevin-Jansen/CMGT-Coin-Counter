@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PagesController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,11 +14,11 @@
 |
 */
 
-Route::get('/')->uses('PagesController@index')->name('homepage');
+Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
-Route::post('fetch')->uses('PagesController@fetch')->name('data.fetch');
-Route::get('fetch')->uses('PagesController@fetch')->name('data.fetch');
-Route::get('wallet')->uses('PagesController@coins')->name('coins');
-Route::get('leaderboard')->uses('PagesController@leaderboard')->name('leaderboard');
+Route::post('fetch', [PagesController::class, 'fetch'])->name('data.fetch');
+Route::get('fetch', [PagesController::class, 'fetch'])->name('data.fetch');
+Route::get('wallet', [PagesController::class, 'wallet'])->name('coins');
+Route::get('leaderboard', [PagesController::class, 'leaderboard'])->name('leaderboard');
 
-Route::get('{any}')->uses('PagesController@index');
+Route::get('{any}', [PagesController::class, 'index']);
