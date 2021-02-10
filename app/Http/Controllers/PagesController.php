@@ -78,8 +78,6 @@ class PagesController extends Controller
 
             $data = json_decode($res->getBody()->getContents(), true);
 
-            unset($data['marleenikhounogsteedsvanje']);
-
             arsort($data);
 
             $leaderboard = [];
