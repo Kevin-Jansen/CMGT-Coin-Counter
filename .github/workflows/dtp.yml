@@ -1,0 +1,46 @@
+name: Deploy to production
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install npm packages & compile assets
+      id: npm
+      run: |
+        npm install
+        npm run production
+    - name: Install dependencies
+      id: composer
+      run: |
+            composer install --no-dev --no-progress --optimize-autoloader
+            
+    - name: Deploy to server
+      id: deploy
+      uses: Pendect/action-rsyncer@v1.1.0
+      env:
+        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+      with:
+        flags: '-avzr --delete'
+        options: '--exclude-from="exclude.txt"'
+        ssh_options: ''
+        src: '/'
+        dest: 'cmgt.dev@server.kevin-jansen.dev:blockchain.cmgt.dev'
+
+    - name: Display status from deploy
+      run: echo "${{ steps.deploy.outputs.status }}"
