@@ -6,7 +6,7 @@
 			<p class="text-sm mt-4 text-white px-8">Deze pagina ververst elke 60 seconden.</p>
             <table>
                 <tr v-for="user in leaderboard">
-                    <td><a :href="'/?name='+ user.name">{{ user.name === '0944552' ? user.name + '&trade;' : user.name }}</a></td>
+                    <td><a :href="'/?name='+ user.name">{{ (user.name === '0944552' || user.name === '0955849') ? user.name + '&trade;' : user.name }}</a></td>
                     <td>{{ user.value }}</td>
                 </tr>
             </table>
